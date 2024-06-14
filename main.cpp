@@ -1,6 +1,6 @@
 /* 
  * File:   main.cpp
- * Author: Lucas Lopes Baroni (2024.1.08.017)
+ * Author: Lucas Lopes Baroni
  *
  * Created on 27 de maio de 2024, 16:08
  */
@@ -14,14 +14,14 @@
 
 using namespace std;
 
-/* Aula de funções */
+/* Ordenation methods class */
 
 
 int myGrowVector[QUANTITY];
 int myDownVector[QUANTITY];
 int myAleatoryVector[QUANTITY];
 
-int menuOption() //Função que retorna a opção selecionada pelo usuário.
+int menuOption() //The function returns the user selected option.
 {
     int choice = 0;
     
@@ -41,7 +41,7 @@ int menuOption() //Função que retorna a opção selecionada pelo usuário.
 }
 unsigned long int bubbleSort(int v[], int length)
 {
-    long int bubbleInteractions = 0;
+    unsigned long int bubbleInteractions = 0;
     int aux, n = 0;
     bool onOrder = false;
     while(!onOrder)
@@ -51,21 +51,20 @@ unsigned long int bubbleSort(int v[], int length)
                 aux = v[i];
                 v[i] = v[i + 1];
                 v[i + 1] = aux;
-                bubbleInteractions += 2; //Duas trocas são feitas, por isso, são duas interações.
+                bubbleInteractions += 4; //The vector is used 4 times.
             }
-            bubbleInteractions += 2; //Uma interação com o if e outra com o for.
+            bubbleInteractions += 2; //The condition use the vector 2 times.
         }
         if(n == length)
             onOrder = true;
         else
             n++;
-        bubbleInteractions += 2; //Uma interação com o if e outra com o while.
     }
     return bubbleInteractions;
 }
 unsigned long int insertionSort(int v[], int length)
 {
-    long int insertionInteractions = 0;
+    unsigned long int insertionInteractions = 0;
     int aux, back;
     for(int i = 1; i < length; i++)
     {
@@ -75,16 +74,16 @@ unsigned long int insertionSort(int v[], int length)
         {
             v[back + 1] = v[back];
             back = back - 1;
-            insertionInteractions += 2; //Uma interação com o vetor e outra com o while.
+            insertionInteractions += 2; //The vector is used times inside while loop.
         }
         v[back + 1] = aux; 
-        insertionInteractions += 2; //Uma interação com o vetor e outra com o for.
+        insertionInteractions += 3; //The vector is used 2 times in for and 1 time in while condition.
     }
     return insertionInteractions;
 }
 unsigned long int selectionSort(int v[], int length)
 {
-    long int selectionInteractions = 0;
+    unsigned long int selectionInteractions = 0;
     int aux = 0, pos = 0;
     for(int i = 0; i < length; i++)
     {
@@ -96,13 +95,13 @@ unsigned long int selectionSort(int v[], int length)
             {
                 aux = v[j];
                 pos = j;
-                selectionInteractions++; //Uma interação extra com as variáveis.
+                selectionInteractions++; //The vector is used 1 time inside if.
             }
-            selectionInteractions += 2; //Uma interação com o if e uma com o for.
+            selectionInteractions += 1; //The vector is used 1 time in if condition.
         }
         v[pos] = v[i];
         v[i] = aux;
-        selectionInteractions += 3; //Duas interações com vetor e uma com o for.
+        selectionInteractions += 4; //the vector is used 4 times inside for loop.
     }
     return selectionInteractions;
 }
